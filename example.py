@@ -2,17 +2,7 @@ from mifis import mifis
 import numpy as np
 import csv
 
-def genSynth(n_dim, n_samples):
-  n_instances = np.random.randint(2,10, size=n_samples)  
-  data = []
-  labels = []
-  for i in range(n_samples):
-    instances = 10 * np.random.random_sample((n_instances[i], n_dim))
-    target = 1 # np.random.randn()
-    data.append(instances.tolist())
-    labels.append(target)
-  return data,labels
-
+# Load multiple instance data from csv
 def synth():
   with open('synth.csv', 'r') as csvfile:
     synthreader = csv.reader(csvfile, delimiter=',')
@@ -29,12 +19,21 @@ def synth():
       labels[bag_id-1] = target
   return data,labels
 
+# read data and labels
 data,labels = synth()
-print(data)
+
 n_rules = 4
 n_inputs = 2 
+# create a multiple instance fuzzy inference system
 fis = mifis(data,labels,n_rules,n_inputs)
-fis.to_fuzzyai(['number_clicks','session_duration'],'conversion')
+
+# train MI-ANFIS for 100 epochs
+fis.train(100)
+
+# convert MIANFIS to Fuzzy.ai agent
+input_names = ['number_clicks','session_duration']
+output_name = 'conversion'
+fuzzyai_agent = fis.to_fuzzyai_agent(input_names, output_name)
+print(fuzzyai_agent)
+
 #fis.plot_rules()
-fis.train(200)
-fis.plot_rules()

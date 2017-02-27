@@ -78,11 +78,11 @@ class mifis():
 )
     print(disp)
 
-  def to_fuzzyai(self, input_names,output_name):
+  def to_fuzzyai_agent(self, input_names,output_name):
     txt = {}
     inputs_txt = {}
     for i in range(self.n_inputs):
-       inputs_txt[input_names[i]] = {'term'+str(j+1):[self.net.gmfs[j].centers.data[0,i]-2*self.net.gmfs[j].sigmas.data[0,i],self.net.gmfs[j].centers.data[0,i],self.net.gmfs[j].centers.data[0,i]+2*self.net.gmfs[j].sigmas.data[0,i]] for j in range(self.n_rules)}
+       inputs_txt[input_names[i]] = {'term'+str(j+1):[self.net.gmfs[j].centers.data[0,i]-0.5*self.net.gmfs[j].sigmas.data[0,i],self.net.gmfs[j].centers.data[0,i],self.net.gmfs[j].centers.data[0,i]+0.5*self.net.gmfs[j].sigmas.data[0,i]] for j in range(self.n_rules)}
     output_txt = {}
     output_txt[output_name] = {'term'+str(j+1):[self.net.bias.data[j]-0.01,self.net.bias.data[j], self.net.bias.data[j]+0.01] for j in range(self.n_rules)}
     rules_txt = ["IF " + ''.join([input_names[i]+" IS "+ "term" + str(j+1)+ " AND " for i in range(self.n_inputs-1)]) + input_names[-1]+" IS "+ "term" + str(j+1) + " THEN " + output_name+" IS "+ "term" + str(j+1) for j in range(self.n_rules)]
@@ -91,4 +91,4 @@ class mifis():
     txt['rules']=rules_txt
     disp = json.dumps(json.loads(json.dumps(txt), parse_float=lambda x: round(float(x), 2)),indent=4
 )
-    print(disp) 
+    return disp 
