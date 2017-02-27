@@ -45,7 +45,7 @@ fis.train(100)
 ```
 
 ## Fuzzy.ai
-In order to use MI-ANFIS generated rules with fuzzy.ai api, we created a function that approximates MI-ANFIS gaussian based MFs and rules to fuzzy.ai triangular fuzzy sets. Since MI-ANFIS doesn't know the linguistic terms, it assigns default terms to the fuzzy sets. feel free to edit those before creating your agent within fuzzy.ai.
+In order to use MI-ANFIS generated rules with fuzzy.ai api, we created a function that approximates MI-ANFIS gaussian based MFs and rules to fuzzy.ai triangular fuzzy sets. Since MI-ANFIS doesn't know the linguistic terms, it assigns default terms to the fuzzy sets. Feel free to edit those before creating your agent within fuzzy.ai.
 
 Example Code
 ```bash
@@ -58,7 +58,7 @@ fuzzyai_agent = fis.to_fuzzyai_agent(input_names, output_name)
 print(fuzzyai_agent)
 ```
 
-Example Generated fuzzy.ai agent
+Example Generated fuzzy.ai Agent
 ```bash
 {
     "inputs": {
