@@ -1,0 +1,1 @@
+#Multiple Instance Fuzzy Inference
