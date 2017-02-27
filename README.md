@@ -24,7 +24,7 @@ git clone https://github.com/aminert/mifis.git
 ```
 
 ## Usage
-Currently only order zero MI-ANFIS is supported. To be able to train it to learn and use fuzzy rules, you'll need to assemble training data, see `synth.csv` for an example. The data doesn’t have to be labeled at a fine level, only high level labels are required. In general in Multiple Instance Learning the data is grouped into bags of instances and only labels of bags are available and not that of individual instances. 
+Currently, only order zero MI-ANFIS is supported. To be able to train it to learn and use fuzzy rules, you'll need to assemble training data, see `synth.csv` for an example. The data doesn’t have to be labeled at a fine level, only high level labels are required. In general, in Multiple Instance Learning the data is grouped into bags of instances and only labels of bags are available and not those of individual instances. 
 
 In `example.py`, I'm providing a data loader that will read `synth.csv`. In this problem, we will try to predict a conversion score for a given user. We have collected historical data on a set of 100 users, the features we tracked are `number_clicks` and `session_duration`. These features were tracked over a period of time, in this setting, every time the user visited the website we recorded these values. We also have a label `conversion` either 0 or 1, for each user, indicating wether the user converted to a customer or not. Because, it's not clear which visit to the website made the user convert, we will assign the label to all his previous visits (the number of visits (instance) could be different from customer to customer), thus making the problem a multiple instance problem. 
 
