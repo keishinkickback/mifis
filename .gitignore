@@ -1,3 +1,4 @@
 .DS_Store
 .mifis.py.swo
 .mifis.py.swn
+__pycache__*
